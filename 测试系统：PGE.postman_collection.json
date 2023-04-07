@@ -1,0 +1,399 @@
+{
+	"info": {
+		"_postman_id": "5be3ab27-5605-4974-b7b2-1b69f92ee02d",
+		"name": "测试系统：PGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "模块1: wfm",
+			"item": [
+				{
+					"name": "get weather API",
+					"item": [
+						{
+							"name": "get weather",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"step1: 测试响应状态码\")\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"});\r",
+											"pm.test(\"断言city=北京\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.weatherinfo.city).to.eql('北京');\r",
+											"});\r",
+											"pm.test(\"断言Radar包含RADAR\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"RADAR\");\r",
+											"});\r",
+											"pm.test(\"Body is correct\", function () {\r",
+											"    pm.response.to.have.body(\"{\\\"weatherinfo\\\":{\\\"city\\\":\\\"北京\\\",\\\"cityid\\\":\\\"101010100\\\",\\\"temp\\\":\\\"27.9\\\",\\\"WD\\\":\\\"南风\\\",\\\"WS\\\":\\\"小于3级\\\",\\\"SD\\\":\\\"28%\\\",\\\"AP\\\":\\\"1002hPa\\\",\\\"njd\\\":\\\"暂无实况\\\",\\\"WSE\\\":\\\"<3\\\",\\\"time\\\":\\\"17:55\\\",\\\"sm\\\":\\\"2.1\\\",\\\"isRadar\\\":\\\"1\\\",\\\"Radar\\\":\\\"JC_RADAR_AZ9010_JB\\\"}}\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/data/sk/101010100.html",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"data",
+										"sk",
+										"101010100.html"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "带参数的查询接口",
+					"item": [
+						{
+							"name": "带参数的查询类接口",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"step1: 测试响应状态码\")\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://cx.shouji.360.cn/phonearea.php?number={{phone}}",
+									"protocol": "http",
+									"host": [
+										"cx",
+										"shouji",
+										"360",
+										"cn"
+									],
+									"path": [
+										"phonearea.php"
+									],
+									"query": [
+										{
+											"key": "number",
+											"value": "{{phone}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "模块2: dsaas",
+			"item": [
+				{
+					"name": "API1",
+					"item": [
+						{
+							"name": "get weather",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"step1: 测试响应状态码\")\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"});\r",
+											"pm.test(\"断言city=北京\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.weatherinfo.city).to.eql('北京');\r",
+											"});\r",
+											"pm.test(\"断言Radar包含RADAR\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"RADAR\");\r",
+											"});\r",
+											"pm.test(\"Body is correct\", function () {\r",
+											"    pm.response.to.have.body(\"{\\\"weatherinfo\\\":{\\\"city\\\":\\\"北京\\\",\\\"cityid\\\":\\\"101010100\\\",\\\"temp\\\":\\\"27.9\\\",\\\"WD\\\":\\\"南风\\\",\\\"WS\\\":\\\"小于3级\\\",\\\"SD\\\":\\\"28%\\\",\\\"AP\\\":\\\"1002hPa\\\",\\\"njd\\\":\\\"暂无实况\\\",\\\"WSE\\\":\\\"<3\\\",\\\"time\\\":\\\"17:55\\\",\\\"sm\\\":\\\"2.1\\\",\\\"isRadar\\\":\\\"1\\\",\\\"Radar\\\":\\\"JC_RADAR_AZ9010_JB\\\"}}\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/data/sk/101010100.html",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"data",
+										"sk",
+										"101010100.html"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "API2",
+					"item": [
+						{
+							"name": "带参数的查询类接口",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"step1: 测试响应状态码\")\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://cx.shouji.360.cn/phonearea.php?number={{phone}}",
+									"protocol": "http",
+									"host": [
+										"cx",
+										"shouji",
+										"360",
+										"cn"
+									],
+									"path": [
+										"phonearea.php"
+									],
+									"query": [
+										{
+											"key": "number",
+											"value": "{{phone}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "模块3: PGE Micriservice",
+			"item": [
+				{
+					"name": "API1",
+					"item": [
+						{
+							"name": "get weather",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"step1: 测试响应状态码\")\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"});\r",
+											"pm.test(\"断言city=北京\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.weatherinfo.city).to.eql('北京');\r",
+											"});\r",
+											"pm.test(\"断言Radar包含RADAR\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"RADAR\");\r",
+											"});\r",
+											"pm.test(\"Body is correct\", function () {\r",
+											"    pm.response.to.have.body(\"{\\\"weatherinfo\\\":{\\\"city\\\":\\\"北京\\\",\\\"cityid\\\":\\\"101010100\\\",\\\"temp\\\":\\\"27.9\\\",\\\"WD\\\":\\\"南风\\\",\\\"WS\\\":\\\"小于3级\\\",\\\"SD\\\":\\\"28%\\\",\\\"AP\\\":\\\"1002hPa\\\",\\\"njd\\\":\\\"暂无实况\\\",\\\"WSE\\\":\\\"<3\\\",\\\"time\\\":\\\"17:55\\\",\\\"sm\\\":\\\"2.1\\\",\\\"isRadar\\\":\\\"1\\\",\\\"Radar\\\":\\\"JC_RADAR_AZ9010_JB\\\"}}\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/data/sk/101010100.html",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"data",
+										"sk",
+										"101010100.html"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "API2",
+					"item": [
+						{
+							"name": "带参数的查询类接口",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"step1: 测试响应状态码\")\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://cx.shouji.360.cn/phonearea.php?number={{phone}}",
+									"protocol": "http",
+									"host": [
+										"cx",
+										"shouji",
+										"360",
+										"cn"
+									],
+									"path": [
+										"phonearea.php"
+									],
+									"query": [
+										{
+											"key": "number",
+											"value": "{{phone}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "phone",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
